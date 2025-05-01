@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Waterjet Status</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* greyed out */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2em;
+      transition: background-color 0.3s, opacity 0.3s;
+      z-index: 1;
+    }
+
+    .hidden {
+      background-color: transparent;
+      color: transparent;
+      pointer-events: none;
+    }
+
+    .status-box {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="overlay" class="overlay">
+  <div>Is the waterjet working?</div>
+  <div class="status-box" id="statusText">NO</div>
+</div>
+
+<script>
+  // Change this to "YES" or "NO"
+  const status = "NO";
+
+  const overlay = document.getElementById("overlay");
+  const statusText = document.getElementById("statusText");
+
+  statusText.textContent = status;
+
+  if (status.toUpperCase() === "YES") {
+    overlay.classList.add("hidden");
+  }
+</script>
+
+</body>
+</html>
